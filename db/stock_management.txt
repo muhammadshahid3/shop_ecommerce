@@ -1,0 +1,55 @@
+
+1. products
+  id, name, description, price, sku, stock_quantity
+
+2. orders
+  id, customer_id, order_date, total_amount
+
+3. order_items
+  id, order_id, product_id, quantity, price
+
+4. stock_transactions
+  id, product_id, previous_quantity, new_quantity, transaction_type ('none', 'purchase', 'sale', 'return', 'remove'), created_at
+
+// Adjust stock when an order is placed //
+public function placeOrder(Request $request) {
+  $order = Order::create([...]);
+
+  foreach ($request->items as $item) {
+    $product = Product::find($item['product_id']);
+
+    if ($product->stock_quantity < $item['quantity']) {
+        return response()->json(['message' => 'Product out of stock'], 400);
+    }
+
+    $product->stock_quantity -= $item['quantity'];
+    $product->save();
+
+    StockMovement::create([
+      'product_id' => $product->id,
+      'quantity' => -$item['quantity'],
+      'movement_type' => 'sale'
+    ]);
+
+    OrderItem::create([
+      'order_id' => $order->id,
+      'product_id' => $product->id,
+      'quantity' => $item['quantity'],
+      'price' => $product->price
+    ]);
+  }
+  return response()->json(['message' => 'Order placed successfully'], 200);
+}
+
+
+$.ajax({
+  url : '{{route('admin.product-qnty')}}',
+  method: 'GET',
+  data: {'stock_value': stock_value , 'product_id' : product_id},
+  success:function (response){
+      console.log(response);
+  },
+  error :function (err){
+      console.log(err);
+  }
+ });

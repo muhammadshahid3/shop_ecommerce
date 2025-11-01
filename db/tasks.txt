@@ -1,0 +1,17 @@
+uzair
+-------------------
+3. orders table design on admin side
+
+1. 
+
+
+jahanzab
+-------------------
+1. share two decimal code
+2. use queue for order number
+
+
+coupon code backend crud
+coupon code frontend functionality
+
+verify discount price for place order

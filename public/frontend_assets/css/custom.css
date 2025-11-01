@@ -1,0 +1,158 @@
+
+:root {
+  --primarycolor: #0989ff;
+  --secondarycolor: #fd4b6b;
+}
+
+.fontawesome-width {
+  min-width: 18px;
+}
+
+.tp-header-border-shadow {
+  box-shadow: 0px 2px 6px rgba(1, 15, 28, 0.16);
+}
+
+.customcss-scroll-screen {
+  max-height: 100vh;
+  overflow-y: scroll;
+}
+
+.tp-product-category-thumb a img {
+  display: inline-block;
+  width: 180px;
+  height: 180px;
+  background-color: var(--tp-grey-1);
+  background-image: radial-gradient(95.56% 95.56% at 50% 50%, #FFFFFF 0%, #BDDEFF 100%);
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.summernote-edit-btn {
+  margin-top: -15px;
+  border-radius: 50% !important;
+}
+
+/* .tooltip .tooltip-inner {
+  --bs-tooltip-bg: var(--secondarycolor) !important;
+}
+.tooltip .tooltip-arrow::before {
+  --bs-tooltip-bg: var(--secondarycolor) !important;
+} */
+
+.wishlist-basket-icon-color {
+  color: var(--primarycolor) !important;
+}
+.wishlist-basket-icon-color:hover {
+  cursor: pointer;
+}
+
+.thumb-max-height {
+  max-height: 260px;
+}
+
+.title-min-height {
+  min-height: 42px;
+  max-height: 42px;
+}
+
+
+/* Rating Css */
+
+.rate {
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center
+}
+
+.rating>input {
+  display: none
+}
+
+.rating>label {
+  position: relative;
+  width: 1em;
+  font-size: 30px;
+  font-weight: 300;
+  color: #FFD600;
+  cursor: pointer
+}
+
+.rating>label::before {
+  content: "\2605";
+  position: absolute;
+  opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+  opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+  opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+  opacity: 0.4
+}
+
+.buttons {
+  top: 36px;
+  position: relative
+}
+
+.rating-submit {
+  border-radius: 8px;
+  color: #fff;
+  height: auto
+}
+
+.rating-submit:hover {
+  color: #fff
+}
+
+
+.basket-btn-qty-inc {
+  border-color:#DADCE0 !important;
+  border-top-right-radius:20px !important;
+  border-bottom-right-radius:20px !important;
+}
+
+.basket-btn-qty-dec {
+  border-color:#DADCE0 !important;
+  border-top-left-radius:20px !important;
+  border-bottom-left-radius:20px !important;
+}
+
+.basket-btn-qty-val {
+  border-color:#DADCE0 !important;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.color_active{
+  background-color: #0989FF;
+  border-radius: 50px;
+}
+
+.custom-radio-btn-txt {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.total-price-color {
+  /* color: #0989FF; */
+  color: #111111;
+  font-size: 15px;
+}

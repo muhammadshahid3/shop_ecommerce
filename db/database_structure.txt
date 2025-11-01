@@ -1,0 +1,14 @@
+//=====Database Structure=========//
+===========================
+1. Customer Table
+id , username , email , password , phone_number , status , created_at , updated_at
+===========================
+2. Categories Table
+id , category_name , category_image , category_icon , category_order , category_status , created_at , updated_at
+==========================
+3. Products Table
+id , product_slug , product_code , product_barcode , category_id , product_name , product_old_price , product_price , product_thumbnail , product_colors , product_size , product_description , product_manufacturer , product_supplier , product_weight , product_order , product_stock , product_status , created_at , updated_at 
+=========================
+4. Settings
+id , shop_name , shop_email , shop_phone , shop_city , shop_descrition, shop_street , shop_latitude , shop_longitude , shop_postcode , shop_radius , shop_testing_mode , shop_texting_phone , shop_message , shop_status , created_at , updated_at
+

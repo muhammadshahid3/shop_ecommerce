@@ -1,0 +1,29 @@
+ <div class="tp-shop-widget mb-50">
+                        <h3 class="tp-shop-widget-title">Categories</h3>
+
+                        <div class="tp-shop-widget-content">
+                           <div class="tp-shop-widget-categories">
+                              <ul>
+                           <input type="hidden" id="category_slug" value="{{$category_single->category_slug}}">
+                              
+                           @foreach ($allcategories as $category_list)
+                              <li><a style="cursor:pointer" onclick="categoryFilter({{$category_list->category_slug}})">{{$category_list->category_name}}
+
+                                 <?php $product = 0;  ?>
+                                 @foreach($category_products as $category_products_list)
+
+                                    @if($category_list->id == $category_products_list->category_id)
+                                    <?php  $product = $product + 1; ?>
+                                    @endif
+                                    
+                                    @endforeach
+
+                                 <span>
+                                    {{$product}}
+                                 </span>
+                              </a></li>
+                           @endforeach
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
