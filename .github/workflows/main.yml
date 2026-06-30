@@ -44,16 +44,27 @@ jobs:
 
         script: |
 
-          cd ~/shop
-
-          docker stop laravel10-app || true
-
-          docker rm laravel10-app || true
-
-
-          docker pull ${{ secrets.DOCKER_USERNAME }}/shop-app:latest
+          if [ ! -d "/home/ubuntu/shop" ]; then
+            cd /home/ubuntu
+            git clone https://github.com/muhammadshahid3/shop_ecommerce.git shop
+          fi
 
 
-          docker compose up -d
+          cd /home/ubuntu/shop
 
-          docker image prune -f
+
+          git pull origin main
+
+
+          sudo docker stop laravel10-app || true
+
+          sudo docker rm laravel10-app || true
+
+
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/shop-app:latest
+
+
+          sudo docker compose up -d
+
+
+          sudo docker image prune -f
