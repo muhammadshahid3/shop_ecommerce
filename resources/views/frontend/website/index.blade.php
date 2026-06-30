@@ -313,23 +313,28 @@
                      </div>
                      <h3 class="tp-product-gadget-categories-title">Category <br> Gadgets</h3>
 
-                     <div class="tp-product-gadget-categories-list">
-                        <ul>
-                           {{--Category Gadgets--}}
+       @foreach ($Gadgets_category_products as $Gadgets_category_products_item)
 
-                           @if (isset($Gadgets_category_products))
-                              @foreach (  $Gadgets_category_products as   $Gadgets_category_products_list )                              
-                                 <li>
-                                    <a href="{{route('category.products',$Gadgets_category_products_list['category_slug'])}}">{{$Gadgets_category_products_list['category_name']}}</a>
-                                 </li>
-                        
-                              @endforeach
-                           @endif
+<div class="col-xl-4 col-sm-6">
 
-                        </ul>
-                     </div>
+    <div class="tp-product-item p-relative transition-3 mb-25">
 
-                   
+        <div class="tp-product-thumb p-relative fix m-img thumb-max-height">
+
+            <a href="{{ route('product.detail', $Gadgets_category_products_item->product_slug) }}">
+
+                <img src="{{ asset('upload/product/'.$Gadgets_category_products_item->product_thumbnail) }}"
+                     alt="product-electronic">
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+@endforeach    
                   </div>
                 
                </div>
@@ -345,10 +350,13 @@
                            <div class="col-xl-4 col-sm-6">
                               <div class="tp-product-item p-relative transition-3 mb-25">
                                  <div class="tp-product-thumb p-relative fix m-img thumb-max-height">
-                                    <a href="{{route('product.detail', $Gadgets_category_products_item['product_slug'])}}">
-                                       <img src="{{asset('upload/product/'.$Gadgets_category_products_item['product_thumbnail'])}}"
-                                          alt="product-electronic">
-                                    </a>
+                                  
+                                 <a href="{{route('product.detail', $Gadgets_category_products_item->product_slug)}}">
+
+   <img src="{{asset('upload/product/'.$Gadgets_category_products_item->product_thumbnail)}}"
+      alt="product-electronic">
+
+</a>
 
                                     <!-- product badge -->
                                     <!-- <div class="tp-product-badge">
@@ -358,8 +366,7 @@
                                     <!-- product action -->
                                     <div class="tp-product-action">
                                        <div class="tp-product-action-item d-flex flex-column">
-                                          <button type="button" onclick ="addProductBasket({{$Gadgets_category_products_item['product_slug']}})" class="tp-product-action-btn tp-product-add-cart-btn">
-                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+<button type="button" onclick="addProductBasket('{{$Gadgets_category_products_item->product_slug}}')" class="tp-product-action-btn tp-product-add-cart-btn">                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                                    d="M3.93795 5.34749L4.54095 12.5195C4.58495 13.0715 5.03594 13.4855 5.58695 13.4855H5.59095H16.5019H16.5039C17.0249 13.4855 17.4699 13.0975 17.5439 12.5825L18.4939 6.02349C18.5159 5.86749 18.4769 5.71149 18.3819 5.58549C18.2879 5.45849 18.1499 5.37649 17.9939 5.35449C17.7849 5.36249 9.11195 5.35049 3.93795 5.34749ZM5.58495 14.9855C4.26795 14.9855 3.15295 13.9575 3.04595 12.6425L2.12995 1.74849L0.622945 1.48849C0.213945 1.41649 -0.0590549 1.02949 0.0109451 0.620487C0.082945 0.211487 0.477945 -0.054513 0.877945 0.00948704L2.95795 0.369487C3.29295 0.428487 3.54795 0.706487 3.57695 1.04649L3.81194 3.84749C18.0879 3.85349 18.1339 3.86049 18.2029 3.86849C18.7599 3.94949 19.2499 4.24049 19.5839 4.68849C19.9179 5.13549 20.0579 5.68649 19.9779 6.23849L19.0289 12.7965C18.8499 14.0445 17.7659 14.9855 16.5059 14.9855H16.5009H5.59295H5.58495Z"
@@ -401,7 +408,7 @@
 
                                              <span class="tp-product-tooltip">Quick View</span>
                                           </button>
-                                          <button type="button" onclick="addProductWishlist({{$Gadgets_category_products_item['product_slug']}})" class="tp-product-action-btn tp-product-add-to-wishlist-btn">
+                                          <button type="button" onclick="addProductWishlist({{$Gadgets_category_products_item->product_slug}})" class="tp-product-action-btn tp-product-add-to-wishlist-btn">
                                              <svg width="20" height="19" viewBox="0 0 20 19" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -420,35 +427,35 @@
                                  <!-- product content -->
                                  <div class="tp-product-content">
                                     <div class="tp-product-category">
-                                       <a href="{{route('category.products', $Gadgets_category_products_item['category_slug'])}}">{{$Gadgets_category_products_item['category_name']}}</a>
+                                       <a href="{{route('category.products', $Gadgets_category_products_item->category_slug)}}">{{$Gadgets_category_products_item->category_name}}</a>
                                     </div>
                                     <h3 class="tp-product-title">
-                                       <a href="{{route('product.detail', $Gadgets_category_products_item['product_slug'])}}">
-                                       {{$Gadgets_category_products_item['product_name']}}
+                                       <a href="{{route('product.detail', $Gadgets_category_products_item->product_slug)}}">
+                                       {{$Gadgets_category_products_item->product_name}}
                                        </a>
                                     </h3>
                                     <div class="tp-product-rating d-flex align-items-center">
                                        <div class="tp-product-rating-icon">
                                           {{-- Product Rating --}}
                                           @php 
-                                             if($Gadgets_category_products_item['fill_count_stars'] == 0 && $Gadgets_category_products_item['unfill_count_stars'] == 0){
+                                             if($Gadgets_category_products_item->fill_count_stars == 0 && $Gadgets_category_products_item->unfill_count_stars == 0){
                                                 echo '<span><i class="fa-light fa-star"></i></span>
                                                       <span><i class="fa-light fa-star"></i></span>
                                                       <span><i class="fa-light fa-star"></i></span>
                                                       <span><i class="fa-light fa-star"></i></span>
                                                       <span><i class="fa-light fa-star"></i></span>';
                                              }else{
-                                                echo $Gadgets_category_products_item['fill_count_stars'] . $Gadgets_category_products_item['unfill_count_stars'];
+                                                echo $Gadgets_category_products_item->fill_count_stars . $Gadgets_category_products_item->unfill_count_stars;
                                              }
                                           @endphp
                                        
                                        </div>
                                        <div class="tp-product-rating-text">
-                                          <span>({{$Gadgets_category_products_item['single_reviews_count']}} Review)</span>
+                                          <span>({{$Gadgets_category_products_item->single_reviews_count}} Review)</span>
                                        </div>
                                     </div>   
                                     <div class="tp-product-price-wrapper">
-                                       <span class="tp-product-price">$ {{ GetTwodecimalHelper($Gadgets_category_products_item['product_price']) }}</span>
+                                       <span class="tp-product-price">$ {{ GetTwodecimalHelper($Gadgets_category_products_item->product_price) }}</span>
                                     </div>
                                  </div>
                               </div>
@@ -601,39 +608,39 @@
                   
                      <div class="tp-product-sm-item d-flex align-items-center">
                         <div class="tp-product-thumb mr-25 fix">
-                           <a href="{{route('product.detail', $latest_newarrivals_products_list['product_slug'])}}">
-                              <img src="{{asset('upload/product/' . $latest_newarrivals_products_list['product_thumbnail'])}}" style="width:100px; height:100px;" alt="">
+                           <a href="{{route('product.detail', $latest_newarrivals_products_list->product_slug)}}">
+                              <img src="{{asset('upload/product/' . $latest_newarrivals_products_list->product_thumbnail)}}" style="width:100px; height:100px;" alt="">
                            </a>
                         </div>
                         <div class="tp-product-sm-content">
                            <div class="tp-product-category">
-                              <a href="{{route('category.products', $latest_newarrivals_products_list['category_slug'])}}">{{$latest_newarrivals_products_list['category_name']}}</a>
+                              <a href="{{route('category.products', $latest_newarrivals_products_list->category_slug)}}">{{$latest_newarrivals_products_list->category_name}}</a>
                            </div>
                            <h3 class="tp-product-title">
-                              <a href="{{route('product.detail',$latest_newarrivals_products_list['product_slug'])}}">{{$latest_newarrivals_products_list['product_name']}}</a>
+                              <a href="{{route('product.detail',$latest_newarrivals_products_list->product_slug)}}">{{$latest_newarrivals_products_list->product_name}}</a>
                            </h3>
                            <div class="tp-product-rating d-sm-flex align-items-center">
                               <div class="tp-product-rating-icon">
                                    {{-- Product Rating --}}
                                    @php 
-                                   if($latest_newarrivals_products_list ['fill_count_stars'] == 0 && $latest_newarrivals_products_list ['unfill_count_stars'] == 0){
+                                   if($latest_newarrivals_products_list->fill_count_stars == 0 && $latest_newarrivals_products_list->unfill_count_stars == 0){
                                       echo '<span><i class="fa-light fa-star"></i></span>
                                             <span><i class="fa-light fa-star"></i></span>
                                             <span><i class="fa-light fa-star"></i></span>
                                             <span><i class="fa-light fa-star"></i></span>
                                             <span><i class="fa-light fa-star"></i></span>';
                                    }else{
-                                      echo $latest_newarrivals_products_list ['fill_count_stars'] . $latest_newarrivals_products_list ['unfill_count_stars'];
+                                      echo $latest_newarrivals_products_list->fill_count_stars . $latest_newarrivals_products_list->unfill_count_stars;
                                    }
                                 @endphp
 
                               </div>
                               <div class="tp-product-rating-text">
-                                 <span>({{$latest_newarrivals_products_list ['single_reviews_count']}} Review)</span>
+                                 <span>({{$latest_newarrivals_products_list->single_reviews_count}} Review)</span>
                               </div>
                            </div>
                            <div class="tp-product-price-wrapper">
-                              <span class="tp-product-price"> ${{ GetTwodecimalHelper($latest_newarrivals_products_list['product_price'])}}</span>
+                              <span class="tp-product-price"> ${{ GetTwodecimalHelper($latest_newarrivals_products_list->product_price)}}</span>
                            </div>
                         </div>
                      </div>
@@ -670,38 +677,38 @@
                   
                      <div class="tp-product-sm-item d-flex align-items-center">
                         <div class="tp-product-thumb mr-25 fix">
-                           <a href="{{route('product.detail' , $latest_features_products_list['product_slug'])}}">
-                              <img src="{{asset('upload/product/' . $latest_features_products_list['product_thumbnail'])}}" style="width:100px; height:100px;" alt="">
+                           <a href="{{route('product.detail' , $latest_features_products_list->product_slug)}}">
+                              <img src="{{asset('upload/product/' . $latest_features_products_list->product_thumbnail)}}" style="width:100px; height:100px;" alt="">
                            </a>
                         </div>
                         <div class="tp-product-sm-content">
                            <div class="tp-product-category">
-                              <a href="{{route('category.products' , $latest_features_products_list['category_slug'])}}">{{$latest_features_products_list['category_name']}}</a>
+                              <a href="{{route('category.products' , $latest_features_products_list->category_slug)}}">{{$latest_features_products_list->category_name}}</a>
                            </div>
                            <h3 class="tp-product-title">
-                              <a href="{{route('product.detail' , $latest_features_products_list['product_slug'])}}">{{$latest_features_products_list['product_name']}}</a>
+                              <a href="{{route('product.detail' , $latest_features_products_list->product_slug)}}">{{$latest_features_products_list->product_name}}</a>
                            </h3>
                            <div class="tp-product-rating d-sm-flex align-items-center">
                               <div class="tp-product-rating-icon">
                                    {{-- Product Rating --}}
                                    @php 
-                                   if($latest_features_products_list ['fill_count_stars'] == 0 && $latest_features_products_list ['unfill_count_stars'] == 0){
+                                   if($latest_features_products_list->fill_count_stars == 0 && $latest_features_products_list->unfill_count_stars == 0){
                                       echo '<span><i class="fa-light fa-star"></i></span>
                                             <span><i class="fa-light fa-star"></i></span>
                                             <span><i class="fa-light fa-star"></i></span>
                                             <span><i class="fa-light fa-star"></i></span>
                                             <span><i class="fa-light fa-star"></i></span>';
                                    }else{
-                                      echo $latest_features_products_list ['fill_count_stars'] . $latest_features_products_list ['unfill_count_stars'];
+                                      echo $latest_features_products_list->fill_count_stars . $latest_features_products_list->unfill_count_stars;
                                    }
                                 @endphp
                               </div>
                               <div class="tp-product-rating-text">
-                                 <span>({{$latest_features_products_list['single_reviews_count']}} Review)</span>
+                                 <span>({{$latest_features_products_list->single_reviews_count}} Review)</span>
                               </div>
                            </div>
                            <div class="tp-product-price-wrapper">
-                              <span class="tp-product-price"> ${{GetTwodecimalHelper($latest_features_products_list['product_price'])}}</span>
+                              <span class="tp-product-price"> ${{GetTwodecimalHelper($latest_features_products_list->product_price)}}</span>
                            </div>
                         </div>
                      </div>
@@ -737,38 +744,38 @@
                   
                      <div class="tp-product-sm-item d-flex align-items-center">
                         <div class="tp-product-thumb mr-25 fix">
-                           <a href="{{route('product.detail' , $latest_topsellers_products_list['product_slug'])}}">
-                              <img src="{{asset('upload/product/' . $latest_topsellers_products_list['product_thumbnail'])}}" style="width:100px; height:100px;" alt="">
+                           <a href="{{route('product.detail' , $latest_topsellers_products_list->product_slug)}}">
+                              <img src="{{asset('upload/product/' . $latest_topsellers_products_list->product_thumbnail)}}" style="width:100px; height:100px;" alt="">
                            </a>
                         </div>
                         <div class="tp-product-sm-content">
                            <div class="tp-product-category">
-                              <a href="{{route('category.products' , $latest_topsellers_products_list['category_slug'])}}">{{$latest_topsellers_products_list['category_name']}}</a>
+                              <a href="{{route('category.products' , $latest_topsellers_products_list->category_slug)}}">{{$latest_topsellers_products_list->category_name}}</a>
                            </div>
                            <h3 class="tp-product-title">
-                              <a href="{{route('product.detail' , $latest_topsellers_products_list['product_slug'])}}">{{$latest_topsellers_products_list['product_name']}}</a>
+                              <a href="{{route('product.detail' , $latest_topsellers_products_list->product_slug)}}">{{$latest_topsellers_products_list->product_name}}</a>
                            </h3>
                            <div class="tp-product-rating d-sm-flex align-items-center">
                               <div class="tp-product-rating-icon">
                                   {{-- Product Rating --}}
                                   @php 
-                                  if($latest_topsellers_products_list ['fill_count_stars'] == 0 && $latest_topsellers_products_list ['unfill_count_stars'] == 0){
+                                  if($latest_topsellers_products_list->fill_count_stars == 0 && $latest_topsellers_products_list->unfill_count_stars == 0){
                                      echo '<span><i class="fa-light fa-star"></i></span>
                                            <span><i class="fa-light fa-star"></i></span>
                                            <span><i class="fa-light fa-star"></i></span>
                                            <span><i class="fa-light fa-star"></i></span>
                                            <span><i class="fa-light fa-star"></i></span>';
                                   }else{
-                                     echo $latest_topsellers_products_list ['fill_count_stars'] . $latest_topsellers_products_list ['unfill_count_stars'];
+                                     echo $latest_topsellers_products_list->fill_count_stars . $latest_topsellers_products_list->unfill_count_stars;
                                   }
                                @endphp
                               </div>
                               <div class="tp-product-rating-text">
-                                 <span>({{$latest_topsellers_products_list['single_reviews_count']}} Review)</span>
+                                 <span>({{$latest_topsellers_products_list->single_reviews_count}} Review)</span>
                               </div>
                            </div>
                            <div class="tp-product-price-wrapper">
-                              <span class="tp-product-price"> ${{GetTwodecimalHelper($latest_topsellers_products_list['product_price'])}}</span>
+                              <span class="tp-product-price"> ${{GetTwodecimalHelper($latest_topsellers_products_list->product_price)}}</span>
                            </div>
                         </div>
                      </div>

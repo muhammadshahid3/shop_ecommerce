@@ -8,22 +8,20 @@ $generalsetting = DB::table('general_settings')->first();
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
-  <div class="d-flex align-items-center justify-content-between">
+ <div class="d-flex align-items-center justify-content-between">
     <span href="" class="logo d-flex align-items-center">
-      {{-- <img src="" alt=""> --}}
-      @if(isset($generalsetting->shop_name))
-      <a href="{{route('admin.dashboard')}}">
-        <span class="d-none d-lg-block ms-5">{{$generalsetting->shop_name}}</span>
-      </a>
-      @else
-      <a href="{{route('admin.dashboard')}}">
-        <span class="d-none d-lg-block ms-5">{{$generalsetting->shop_name}}</span>
-      </a>
-      @endif
+        {{-- <img src="" alt=""> --}}
+
+        <a href="{{ route('admin.dashboard') }}">
+            <span class="d-none d-lg-block ms-5">
+                {{ $generalsetting->shop_name ?? 'My Shop' }}
+            </span>
+        </a>
 
     </span>
+
     <i class="bi bi-list toggle-sidebar-btn"></i>
-  </div><!-- End Logo -->
+</div>
 
   <nav class="header-nav ms-auto">
     <ul class="d-flex align-items-center">

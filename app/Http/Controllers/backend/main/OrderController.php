@@ -239,9 +239,9 @@ class OrderController extends Controller
                     if ($order) {
 
                         $generalsetting = GeneralSetting::first();
-                        $customer_details = Customer::where('id', $customer_id)->latest()->first()->toArray();
+                        $customer_details = Customer::where('id', $customer_id)->latest()->first();
 
-                        if ($generalsetting->test_number == $customer_details['phone_number']) {
+                        if ($generalsetting->test_number == $customer_details->phone_number) {
 
                             $order_number = "test_" . random_int(1000000000, time());
                             Order::where('customer_id', $customer_id)

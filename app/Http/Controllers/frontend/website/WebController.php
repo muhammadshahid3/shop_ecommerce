@@ -49,7 +49,7 @@ class WebController extends Controller
            foreach($latest_newarrivals_products as $index => $product_rating) {
             $arrival_products_rating[] = SingleProductRating($product_rating->latest_newarrival_product_id,$product_rating->category_id);
                 $new =   $arrival_products_rating[$index] ?? null;
-                $latest_newarrival_product_array[] = array_merge((array)$latest_newarrivals_products[$index], (array)$new);
+                $latest_newarrival_product_array[] = (object) array_merge((array)$latest_newarrivals_products[$index], (array)$new);
             }
 
             if(isset($latest_newarrivals_products) && count($latest_newarrivals_products) > 0){
@@ -79,7 +79,7 @@ class WebController extends Controller
             foreach($latest_features_products as $index => $product_rating) {
                 $feature_products_rating[] = SingleProductRating($product_rating->feature_product_id,$product_rating->category_id);
                 $new =   $feature_products_rating[$index] ?? null;
-                $latest_features_product_array[] = array_merge((array)$latest_features_products[$index], (array)$new);
+                $latest_features_product_array[] = (object) array_merge((array)$latest_features_products[$index], (array)$new);
             }
 
             if(isset( $latest_features_products) && count( $latest_features_products) > 0){
@@ -109,7 +109,7 @@ class WebController extends Controller
             foreach($latest_topsellers_products as $index => $product_rating) {
                 $seller_products_rating[] = SingleProductRating($product_rating->topseller_product_id,$product_rating->category_id);
                 $new =    $seller_products_rating[$index] ?? null;
-                $latest_seller_product_array [] = array_merge((array)$latest_topsellers_products[$index], (array)$new);
+                $latest_seller_product_array [] = (object) array_merge((array)$latest_topsellers_products[$index], (array)$new);
             }
 
             if(isset(  $latest_topsellers_products) && count(  $latest_topsellers_products) > 0){
@@ -122,41 +122,37 @@ class WebController extends Controller
             $gadget_product_array = [];
 
             $Gadgets_category_products = DB::table('product_newarrivals')
-            ->leftJoin('products', 'products.id', '=', 'product_newarrivals.product_id', )
+            ->leftJoin('products', 'products.id', '=', 'product_newarrivals.product_id')
             ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
             ->select(
                 'products.*',
-                'categories.category_name','categories.category_slug',
+                'categories.category_name',
+                'categories.category_slug',
                 'product_newarrivals.id',
                 'products.id as main_product_id',
                 'product_newarrivals.product_id as latest_newarrival_product_id'
             )
             ->orderBy('products.id', 'DESC')->take(6)
-            ->where('products.product_status' ,'A')
+            ->where('products.product_status', 'A')
             ->get()->toArray();
-    
-              // Single product Rating 
-            foreach(  $Gadgets_category_products as $index => $product_rating) {
-                $products_rating[] = SingleProductRating($product_rating->latest_newarrival_product_id,$product_rating->category_id);
-                $new =  $products_rating[$index] ?? null;
-                $gadget_product_array[] = array_merge((array)$Gadgets_category_products[$index], (array)$new);
 
+            // Single product Rating
+            foreach ($Gadgets_category_products as $index => $product_rating) {
+                $products_rating[] = SingleProductRating($product_rating->latest_newarrival_product_id, $product_rating->category_id);
+                $new = $products_rating[$index] ?? null;
+                $gadget_product_array[] = (object) array_merge((array) $Gadgets_category_products[$index], (array) $new);
             }
-                if(isset($latest_newarrivals_products) && count($latest_newarrivals_products) > 0){
-    
-                    $array_pass['Gadgets_category_products'] = $gadget_product_array;
-                }
-                
-                 // Latest News Blog
 
-             $latest_blog = Blog::get();
+            $array_pass['Gadgets_category_products'] = $gadget_product_array;
 
-        if (isset($latest_blog) && count($latest_blog) > 0) {
+            // Latest News Blog
+            $latest_blog = Blog::latest()->take(3)->get();
 
-            $array_pass['latest_blog'] = $latest_blog;
-        }
+            if ($latest_blog->isNotEmpty()) {
+                $array_pass['latest_blog'] = $latest_blog;
+            }
 
-        return view('frontend.website.index', $array_pass);
+            return view('frontend.website.index', $array_pass);
     }
 
     // Search Product

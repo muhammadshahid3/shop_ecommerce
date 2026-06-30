@@ -97,7 +97,7 @@ class WebProductController extends Controller
             ->with('Product_Images')
             ->with('ProductAdditionalDetails')
             ->where('product_slug', $product_slug)
-            ->get()->toArray();
+            ->get();
 
         if ($product_list && !empty($product_list) && $product_list != null) {
             $cms_text  = EditContent();

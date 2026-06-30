@@ -1,0 +1,14 @@
+php artisan migrate:fresh --seed
+
+
+php artisan db:seed --class=AdminSeeder
+
+php artisan db:seed
+
+
+php artisan db:seed --class=AdminSeeder
+URL: /admin/login
+Email: admin@gmail.com
+Password: 591139
+
+php artisan db:seed --class=AdminSeeder

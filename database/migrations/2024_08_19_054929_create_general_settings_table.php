@@ -24,7 +24,7 @@ return new class extends Migration
             $table->text('facebook')->nullable();
             $table->text('instagram')->nullable();
             $table->text('twitter')->nullable();
-            $table->enum('order_delivery_time',['C','D'])->default('Delivery');
+$table->enum('order_delivery_time', ['C','D'])->default('D');
             $table->float('shipping_charges')->default(null);
             $table->enum('shipping_status', ['F','N'])->default('N');
             $table->enum('pay_by_delivery',['A','I'])->default('I');
