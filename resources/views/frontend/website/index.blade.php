@@ -17,7 +17,7 @@
                      <div class="col-xl-5 col-lg-6 col-md-6">
                         <div class="tp-slider-content p-relative z-index-1">
                            <span id="summernote_cms_texts_btn">Starting at <b>$274.00</b></span>
-                           <h3 class="tp-slider-title">The best tablet Collection 2026</h3>
+                           <h3 class="tp-slider-title">The best tablet Collection 2027</h3>
                            <p >Exclusive offer
                               <span>-35%
                                  <svg width="94" height="20" viewBox="0 0 94 20" fill="none"
