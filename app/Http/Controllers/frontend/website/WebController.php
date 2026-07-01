@@ -147,10 +147,7 @@ class WebController extends Controller
 
             // Latest News Blog
             $latest_blog = Blog::latest()->take(3)->get();
-
-            if ($latest_blog->isNotEmpty()) {
-                $array_pass['latest_blog'] = $latest_blog;
-            }
+            $array_pass['latest_blog'] = $latest_blog;
 
             return view('frontend.website.index', $array_pass);
     }

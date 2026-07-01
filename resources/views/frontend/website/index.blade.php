@@ -833,7 +833,7 @@
 
          <div class="row">
             <div class="col-xl-12">
-               @if ($latest_blog)
+               @if (!empty($latest_blog) && $latest_blog->isNotEmpty())
            
                <div class="tp-blog-main-slider">
 
