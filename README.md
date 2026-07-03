@@ -41,6 +41,91 @@ docker compose up -d --build
 
 ---
 
+## 🚀 Deployment Steps
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/muhammadshahid3/your-repository.git
+cd your-repository
+```
+
+### 2. Configure Environment
+
+```bash
+cp .env.example .env
+```
+
+Update your database credentials inside the `.env` file.
+
+### 3. Build and Start Docker Containers
+
+```bash
+docker compose up -d --build
+```
+
+### 4. Install Laravel Dependencies
+
+```bash
+docker exec -it laravel10-app composer install
+```
+
+### 5. Generate Application Key
+
+```bash
+docker exec -it laravel10-app php artisan key:generate
+```
+
+### 6. Run Database Migration
+
+```bash
+docker exec -it laravel10-app php artisan migrate
+```
+
+Or import an existing SQL database if available.
+
+### 7. Create Storage Link
+
+```bash
+docker exec -it laravel10-app php artisan storage:link
+```
+
+### 8. Clear and Cache Configuration
+
+```bash
+docker exec -it laravel10-app php artisan optimize:clear
+docker exec -it laravel10-app php artisan config:cache
+```
+
+### 9. Verify Running Containers
+
+```bash
+docker ps
+```
+
+### 10. Access the Application
+
+```
+http://localhost:8000
+```
+
+Production:
+
+```
+https://myshop.gotdns.ch
+```
+
+RUN composer install --no-dev --optimize-autoloader
+
+git clone <repo>
+cd project
+cp .env.example .env
+docker compose up -d --build
+docker exec -it laravel10-app php artisan key:generate
+docker exec -it laravel10-app php artisan migrate
+docker exec -it laravel10-app php artisan storage:link
+docker exec -it laravel10-app php artisan optimize:clear
+docker exec -it laravel10-app php artisan config:cache
 # 📁 Project Architecture
 
 ```
