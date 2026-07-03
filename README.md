@@ -11,6 +11,16 @@ This project was deployed on AWS following DevOps best practices. The applicatio
 
 ---
 
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan storage:link
+php artisan config:clear
+php artisan cache:clear
+php artisan config:cache
+docker compose up -d --build
+
 # 🛠 Tech Stack
 
 - Laravel 10
